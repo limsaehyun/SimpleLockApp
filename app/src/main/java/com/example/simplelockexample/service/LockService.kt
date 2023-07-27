@@ -9,6 +9,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.os.IBinder
+import androidx.annotation.StringRes
 import com.example.simplelockexample.receiver.LockReceiver
 import com.example.simplelockexample.R
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,19 +56,26 @@ class LockService : Service() {
     private fun createNotificationChannel() {
         val notificationChannel = NotificationChannel(
             LOCK_CHANNEL,
-            "Lock App",
+            getStringWithContext(R.string.app_name),
             NotificationManager.IMPORTANCE_HIGH,
         ).apply {
             setShowBadge(false)
-            description = "this is lock app example"
-            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
             enableLights(true)
-            lightColor = Color.BLUE
+            description = getStringWithContext(R.string.lock_screen_description)
+            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            lightColor = Color.BLACK
         }
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+
         notificationManager.createNotificationChannel(notificationChannel)
+    }
+
+    private fun getStringWithContext(
+        @StringRes stringRes: Int
+    ): String {
+        return applicationContext.getString(stringRes)
     }
 
     private fun createNotificationBuilder(): Notification {
@@ -75,8 +83,8 @@ class LockService : Service() {
             setOngoing(true)
             setShowWhen(true)
             setSmallIcon(R.drawable.ic_launcher_foreground)
-            setContentTitle("Lock App")
-            setContentText("this is Lock App example!")
+            setContentTitle(getStringWithContext(R.string.app_name))
+            setContentText(getStringWithContext(R.string.lock_screen_description))
         }.build()
     }
 
