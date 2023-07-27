@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleLockExample</string>
+
+    <string name="lock_screen_swipe_to_unlock">밀어서 잠금해제</string>
 </resources>

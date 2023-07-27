@@ -1,10 +1,9 @@
-package com.example.simplelockexample
+package com.example.simplelockexample.receiver
 
 import android.content.BroadcastReceiver
-import android.content.ContentValues.TAG
 import android.content.Context
 import android.content.Intent
-import android.util.Log
+import com.example.simplelockexample.screen.LockActivity
 
 class LockReceiver: BroadcastReceiver() {
 

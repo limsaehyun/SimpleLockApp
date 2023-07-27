@@ -1,4 +1,4 @@
-package com.example.simplelockexample.ui.theme
+package com.example.simplelockexample.common.theme
 
 import android.app.Activity
 import android.os.Build

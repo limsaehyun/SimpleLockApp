@@ -1,4 +1,4 @@
-package com.example.simplelockexample
+package com.example.simplelockexample.util
 
 enum class LockAppErrorCode {
 

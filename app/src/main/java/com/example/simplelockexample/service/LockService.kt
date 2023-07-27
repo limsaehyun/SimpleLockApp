@@ -1,4 +1,4 @@
-package com.example.simplelockexample
+package com.example.simplelockexample.service
 
 import android.app.Notification
 import android.app.NotificationChannel
@@ -9,6 +9,8 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.os.IBinder
+import com.example.simplelockexample.receiver.LockReceiver
+import com.example.simplelockexample.R
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
