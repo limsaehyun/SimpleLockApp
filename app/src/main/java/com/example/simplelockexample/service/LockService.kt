@@ -9,9 +9,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.graphics.Color
 import android.os.IBinder
+import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.example.simplelockexample.R
 import com.example.simplelockexample.receiver.LockReceiver
+import com.example.simplelockexample.util.SimpleNotificationBuilder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
@@ -27,11 +29,8 @@ class LockService : Service() {
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         createNotificationChannel()
-        val builder = createNotificationBuilder()
-        startForeground(SERVICE_ID, builder)
-
+        startForeground(SERVICE_ID, createNotificationBuilder())
         startLockReceiver()
-
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -54,17 +53,12 @@ class LockService : Service() {
     }
 
     private fun createNotificationChannel() {
-        val notificationChannel = NotificationChannel(
+        val notificationChannel = SimpleNotificationBuilder.createChannel(
             LOCK_CHANNEL,
             getStringWithContext(R.string.app_name),
             NotificationManager.IMPORTANCE_HIGH,
-        ).apply {
-            setShowBadge(false)
-            enableLights(true)
-            description = getStringWithContext(R.string.lock_screen_description)
-            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-            lightColor = Color.BLACK
-        }
+            getStringWithContext(R.string.lock_screen_description)
+        )
 
         val notificationManager =
             getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
@@ -79,13 +73,13 @@ class LockService : Service() {
     }
 
     private fun createNotificationBuilder(): Notification {
-        return Notification.Builder(this, LOCK_CHANNEL).apply {
-            setOngoing(true)
-            setShowWhen(true)
-            setSmallIcon(R.drawable.ic_launcher_foreground)
-            setContentTitle(getStringWithContext(R.string.app_name))
-            setContentText(getStringWithContext(R.string.lock_screen_description))
-        }.build()
+        return SimpleNotificationBuilder.createBuilder(
+            context = this,
+            channelId = LOCK_CHANNEL,
+            title = getStringWithContext(R.string.app_name),
+            text = getStringWithContext(R.string.lock_screen_description),
+            icon = R.drawable.ic_launcher_foreground,
+        )
     }
 
     private companion object {
