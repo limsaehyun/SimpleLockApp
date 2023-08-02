@@ -25,6 +25,8 @@ class LockActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        setShowWhenLocked(true)
+
         setContent {
             val (isComplete, updateComplete) = remember {
                 mutableStateOf(false)
@@ -52,3 +54,4 @@ class LockActivity : ComponentActivity() {
         }
     }
 }
+
