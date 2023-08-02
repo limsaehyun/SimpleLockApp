@@ -1,15 +1,12 @@
 package com.example.simplelockexample.service
 
 import android.app.Notification
-import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
-import android.graphics.Color
 import android.os.IBinder
-import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import com.example.simplelockexample.R
 import com.example.simplelockexample.receiver.LockReceiver
@@ -36,7 +33,7 @@ class LockService : Service() {
 
     override fun onDestroy() {
         stopLockReceiver()
-        lockServiceManager.stopService()
+        lockServiceManager.stop()
         super.onDestroy()
     }
 

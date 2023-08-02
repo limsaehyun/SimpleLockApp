@@ -45,6 +45,6 @@ class MainActivity : ComponentActivity() {
 
 
     private fun startLockService() {
-        lockServiceManager.startService()
+        lockServiceManager.start()
     }
 }

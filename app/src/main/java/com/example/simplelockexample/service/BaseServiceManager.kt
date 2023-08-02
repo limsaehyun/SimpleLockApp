@@ -9,18 +9,18 @@ abstract class BaseServiceManager<T : Service>(
     val context: Context,
     val targetClass: Class<T>,
 ) {
-    fun startService() = synchronized(this) {
+    fun start() = synchronized(this) {
         val intent = Intent(context, targetClass)
-
-        if (!context.isServiceRunning<Class<T>>()) {
+        
+        if (!context.isServiceRunning(targetClass)) {
             context.startForegroundService(intent)
         }
     }
 
-    fun stopService() = synchronized(this) {
+    fun stop() = synchronized(this) {
         val intent = Intent(context, targetClass)
 
-        if (context.isServiceRunning<Class<T>>()) {
+        if (context.isServiceRunning(targetClass)) {
             context.stopService(intent)
         }
     }
