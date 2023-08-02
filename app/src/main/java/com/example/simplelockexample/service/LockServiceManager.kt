@@ -14,7 +14,7 @@ class LockServiceManager @Inject constructor(
     override fun startService() = synchronized(this) {
         val intent = Intent(context, LockService::class.java)
 
-        if (!context.isServiceRunning(LockService::class.java)) {
+        if (!context.isServiceRunning<LockService>()) {
             context.startForegroundService(intent)
         }
     }
@@ -22,7 +22,7 @@ class LockServiceManager @Inject constructor(
     override fun stopService() = synchronized(this) {
         val intent = Intent(context, LockService::class.java)
 
-        if (context.isServiceRunning(LockService::class.java)) {
+        if (context.isServiceRunning<LockService>()) {
             context.stopService(intent)
         }
     }

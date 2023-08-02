@@ -10,8 +10,8 @@ import android.content.IntentFilter
 import android.graphics.Color
 import android.os.IBinder
 import androidx.annotation.StringRes
-import com.example.simplelockexample.receiver.LockReceiver
 import com.example.simplelockexample.R
+import com.example.simplelockexample.receiver.LockReceiver
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
