@@ -6,17 +6,19 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
+import android.view.ContextThemeWrapper
+import dagger.hilt.android.qualifiers.ActivityContext
 
 
 private const val REQ_CODE_OVERLAY_PERMISSION: Int = 0
 
 object PermissionUtil {
-    fun onObtainingPermissionOverlayWindow(context: Context) {
+    fun onObtainingPermissionOverlayWindow(context: Activity) {
         val intent = Intent(
             Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-            Uri.parse("package:" + context.packageName)
+            Uri.parse(context.packageName.addPackagePrefix())
         )
-        (context as Activity).startActivityForResult(intent, REQ_CODE_OVERLAY_PERMISSION)
+        context.startActivityForResult(intent, REQ_CODE_OVERLAY_PERMISSION)
     }
 
 
