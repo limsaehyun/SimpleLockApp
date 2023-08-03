@@ -1,11 +1,11 @@
-package com.example.simplelockexample.service
+package com.example.simplelockexample.service.core
 
 import android.app.Service
 import android.content.Context
 import android.content.Intent
 import com.example.simplelockexample.util.isServiceRunning
 
-abstract class BaseServiceManager<T : Service>(
+abstract class BaseForegroundServiceManager<T : Service>(
     val context: Context,
     val targetClass: Class<T>,
 ) {

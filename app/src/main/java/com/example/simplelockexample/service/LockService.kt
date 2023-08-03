@@ -42,11 +42,11 @@ class LockService : Service() {
             addAction(Intent.ACTION_SCREEN_ON)
             addAction(Intent.ACTION_SCREEN_OFF)
         }
-        registerReceiver(LockReceiver.getInstance(), intentFilter)
+        registerReceiver(LockReceiver, intentFilter)
     }
 
     private fun stopLockReceiver() {
-        unregisterReceiver(LockReceiver.getInstance())
+        unregisterReceiver(LockReceiver)
     }
 
     private fun createNotificationChannel() {

@@ -5,7 +5,7 @@ import android.content.Context
 import android.content.Intent
 import com.example.simplelockexample.screen.LockActivity
 
-class LockReceiver: BroadcastReceiver() {
+object LockReceiver: BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
         when(intent.action) {
@@ -23,9 +23,5 @@ class LockReceiver: BroadcastReceiver() {
                 addFlags(Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS)
             }
         )
-    }
-
-    companion object {
-        fun getInstance() = LockReceiver()
     }
 }

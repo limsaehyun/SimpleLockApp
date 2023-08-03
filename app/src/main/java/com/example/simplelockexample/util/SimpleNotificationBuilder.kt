@@ -12,14 +12,15 @@ object SimpleNotificationBuilder {
         channelId: String,
         name: String,
         importance: Int = NotificationManager.IMPORTANCE_HIGH,
-        description: String,
-    ) = NotificationChannel(channelId, name, importance).apply {
-        setShowBadge(false)
-        enableLights(true)
-        this.description = description
-        lockscreenVisibility = Notification.VISIBILITY_PUBLIC
-        lightColor = Color.BLACK
-    }
+        description: String
+    ) =
+        NotificationChannel(channelId, name, importance).apply {
+            setShowBadge(false)
+            enableLights(true)
+            this.description = description
+            lockscreenVisibility = Notification.VISIBILITY_PUBLIC
+            lightColor = Color.BLACK
+        }
 
     fun createBuilder(
         context: Context,
